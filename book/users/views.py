@@ -19,7 +19,7 @@ from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from .serializers import UserSerializer
 from rest_framework.views import APIView
-
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 
@@ -72,8 +72,6 @@ def logout(request):
         return Response({'message': 'Logout successful'})
     except Exception:
         return Response({'message': 'Failed to logout'}, status=status.HTTP_400_BAD_REQUEST)
-
-from rest_framework_simplejwt.tokens import RefreshToken
 
 @api_view(['POST'])
 def register(request):
