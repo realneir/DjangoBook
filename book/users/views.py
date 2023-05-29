@@ -63,17 +63,6 @@ def login(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def logout(request):
-    try:
-        refresh_token = request.data['refresh_token']
-        token = RefreshToken(refresh_token)
-        token.blacklist()
-        return Response({'message': 'Logout successful'})
-    except Exception:
-        return Response({'message': 'Failed to logout'}, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['POST'])
 def register(request):
     serializer = RegisterSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
